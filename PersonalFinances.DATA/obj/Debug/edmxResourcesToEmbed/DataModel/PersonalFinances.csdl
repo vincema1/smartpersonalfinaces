@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PersonalFinancesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="dossiers" Relationship="Self.FK_dossier_AspNetUsers" FromRole="AspNetUsers" ToRole="dossier" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="asset">
+    <Key>
+      <PropertyRef Name="assetId" />
+    </Key>
+    <Property Name="assetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dossierId" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="dossier" Relationship="Self.FK_asset_dossier" FromRole="asset" ToRole="dossier" />
+  </EntityType>
+  <EntityType Name="dossier">
+    <Key>
+      <PropertyRef Name="dossierId" />
+    </Key>
+    <Property Name="dossierId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dossierName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="userId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dossier_AspNetUsers" FromRole="dossier" ToRole="AspNetUsers" />
+    <NavigationProperty Name="assets" Relationship="Self.FK_asset_dossier" FromRole="dossier" ToRole="asset" />
+    <NavigationProperty Name="importRecordTmps" Relationship="Self.FK_importRecord_dossier" FromRole="dossier" ToRole="importRecordTmp" />
+    <NavigationProperty Name="liabilities" Relationship="Self.FK_liability_dossier" FromRole="dossier" ToRole="liability" />
+    <NavigationProperty Name="records" Relationship="Self.FK_record_dossier" FromRole="dossier" ToRole="record" />
+    <NavigationProperty Name="recordCategories" Relationship="Self.FK_recordCategory_dossier" FromRole="dossier" ToRole="recordCategory" />
+    <NavigationProperty Name="recurrentRecords" Relationship="Self.FK_recurrentRecord_dossier" FromRole="dossier" ToRole="recurrentRecord" />
+  </EntityType>
+  <EntityType Name="importRecordTmp">
+    <Key>
+      <PropertyRef Name="importRecordTmpId" />
+    </Key>
+    <Property Name="importRecordTmpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dossierId" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="revenue" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="expense" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="numOfDuplicates" Type="Int32" />
+    <Property Name="category" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="subcategory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="dossier" Relationship="Self.FK_importRecord_dossier" FromRole="importRecordTmp" ToRole="dossier" />
+  </EntityType>
+  <EntityType Name="liability">
+    <Key>
+      <PropertyRef Name="liabilityId" />
+    </Key>
+    <Property Name="liabilityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dossierId" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="dossier" Relationship="Self.FK_liability_dossier" FromRole="liability" ToRole="dossier" />
+  </EntityType>
+  <EntityType Name="record">
+    <Key>
+      <PropertyRef Name="recordId" />
+    </Key>
+    <Property Name="recordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dossierId" Type="Int32" Nullable="false" />
+    <Property Name="recordSubcategoryId" Type="Int32" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="revenue" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="expense" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="comment" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="dossier" Relationship="Self.FK_record_dossier" FromRole="record" ToRole="dossier" />
+    <NavigationProperty Name="recordSubcategory" Relationship="Self.FK_record_recordSubcategory" FromRole="record" ToRole="recordSubcategory" />
+  </EntityType>
+  <EntityType Name="recordCategory">
+    <Key>
+      <PropertyRef Name="recordCategoryId" />
+    </Key>
+    <Property Name="recordCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dossierId" Type="Int32" Nullable="false" />
+    <Property Name="isExpense" Type="Boolean" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="dossier" Relationship="Self.FK_recordCategory_dossier" FromRole="recordCategory" ToRole="dossier" />
+    <NavigationProperty Name="recordSubcategories" Relationship="Self.FK_recordSubcategory_recordCategory" FromRole="recordCategory" ToRole="recordSubcategory" />
+  </EntityType>
+  <EntityType Name="recordSubcategory">
+    <Key>
+      <PropertyRef Name="recordSubcategoryId" />
+    </Key>
+    <Property Name="recordSubcategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="recordCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="records" Relationship="Self.FK_record_recordSubcategory" FromRole="recordSubcategory" ToRole="record" />
+    <NavigationProperty Name="recordCategory" Relationship="Self.FK_recordSubcategory_recordCategory" FromRole="recordSubcategory" ToRole="recordCategory" />
+    <NavigationProperty Name="recurrentRecords" Relationship="Self.FK_recurrentRecord_recordSubcategory" FromRole="recordSubcategory" ToRole="recurrentRecord" />
+  </EntityType>
+  <EntityType Name="recurrentRecord">
+    <Key>
+      <PropertyRef Name="recurrentRecordId" />
+      <PropertyRef Name="dossierId" />
+      <PropertyRef Name="beginDate" />
+      <PropertyRef Name="endDate" />
+      <PropertyRef Name="peridiocity" />
+      <PropertyRef Name="dayPeriod" />
+    </Key>
+    <Property Name="recurrentRecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dossierId" Type="Int32" Nullable="false" />
+    <Property Name="recordSubcategoryId" Type="Int32" />
+    <Property Name="beginDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="peridiocity" Type="Byte" Nullable="false" />
+    <Property Name="dayPeriod" Type="Byte" Nullable="false" />
+    <Property Name="value" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="dossier" Relationship="Self.FK_recurrentRecord_dossier" FromRole="recurrentRecord" ToRole="dossier" />
+    <NavigationProperty Name="recordSubcategory" Relationship="Self.FK_recurrentRecord_recordSubcategory" FromRole="recurrentRecord" ToRole="recordSubcategory" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dossier_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="dossier" Type="Self.dossier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="dossier">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_asset_dossier">
+    <End Role="dossier" Type="Self.dossier" Multiplicity="1" />
+    <End Role="asset" Type="Self.asset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dossier">
+        <PropertyRef Name="dossierId" />
+      </Principal>
+      <Dependent Role="asset">
+        <PropertyRef Name="dossierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_importRecord_dossier">
+    <End Role="dossier" Type="Self.dossier" Multiplicity="1" />
+    <End Role="importRecordTmp" Type="Self.importRecordTmp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dossier">
+        <PropertyRef Name="dossierId" />
+      </Principal>
+      <Dependent Role="importRecordTmp">
+        <PropertyRef Name="dossierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_liability_dossier">
+    <End Role="dossier" Type="Self.dossier" Multiplicity="1" />
+    <End Role="liability" Type="Self.liability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dossier">
+        <PropertyRef Name="dossierId" />
+      </Principal>
+      <Dependent Role="liability">
+        <PropertyRef Name="dossierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_record_dossier">
+    <End Role="dossier" Type="Self.dossier" Multiplicity="1" />
+    <End Role="record" Type="Self.record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dossier">
+        <PropertyRef Name="dossierId" />
+      </Principal>
+      <Dependent Role="record">
+        <PropertyRef Name="dossierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recordCategory_dossier">
+    <End Role="dossier" Type="Self.dossier" Multiplicity="1" />
+    <End Role="recordCategory" Type="Self.recordCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dossier">
+        <PropertyRef Name="dossierId" />
+      </Principal>
+      <Dependent Role="recordCategory">
+        <PropertyRef Name="dossierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recurrentRecord_dossier">
+    <End Role="dossier" Type="Self.dossier" Multiplicity="1" />
+    <End Role="recurrentRecord" Type="Self.recurrentRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dossier">
+        <PropertyRef Name="dossierId" />
+      </Principal>
+      <Dependent Role="recurrentRecord">
+        <PropertyRef Name="dossierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_record_recordSubcategory">
+    <End Role="recordSubcategory" Type="Self.recordSubcategory" Multiplicity="0..1" />
+    <End Role="record" Type="Self.record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recordSubcategory">
+        <PropertyRef Name="recordSubcategoryId" />
+      </Principal>
+      <Dependent Role="record">
+        <PropertyRef Name="recordSubcategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recordSubcategory_recordCategory">
+    <End Role="recordCategory" Type="Self.recordCategory" Multiplicity="1" />
+    <End Role="recordSubcategory" Type="Self.recordSubcategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recordCategory">
+        <PropertyRef Name="recordCategoryId" />
+      </Principal>
+      <Dependent Role="recordSubcategory">
+        <PropertyRef Name="recordCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recurrentRecord_recordSubcategory">
+    <End Role="recordSubcategory" Type="Self.recordSubcategory" Multiplicity="0..1" />
+    <End Role="recurrentRecord" Type="Self.recurrentRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recordSubcategory">
+        <PropertyRef Name="recordSubcategoryId" />
+      </Principal>
+      <Dependent Role="recurrentRecord">
+        <PropertyRef Name="recordSubcategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="PersonalFinancesDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="assets" EntityType="Self.asset" />
+    <EntitySet Name="dossiers" EntityType="Self.dossier" />
+    <EntitySet Name="importRecordTmps" EntityType="Self.importRecordTmp" />
+    <EntitySet Name="liabilities" EntityType="Self.liability" />
+    <EntitySet Name="records" EntityType="Self.record" />
+    <EntitySet Name="recordCategories" EntityType="Self.recordCategory" />
+    <EntitySet Name="recordSubcategories" EntityType="Self.recordSubcategory" />
+    <EntitySet Name="recurrentRecords" EntityType="Self.recurrentRecord" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dossier_AspNetUsers" Association="Self.FK_dossier_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="dossier" EntitySet="dossiers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_asset_dossier" Association="Self.FK_asset_dossier">
+      <End Role="dossier" EntitySet="dossiers" />
+      <End Role="asset" EntitySet="assets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_importRecord_dossier" Association="Self.FK_importRecord_dossier">
+      <End Role="dossier" EntitySet="dossiers" />
+      <End Role="importRecordTmp" EntitySet="importRecordTmps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_liability_dossier" Association="Self.FK_liability_dossier">
+      <End Role="dossier" EntitySet="dossiers" />
+      <End Role="liability" EntitySet="liabilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_record_dossier" Association="Self.FK_record_dossier">
+      <End Role="dossier" EntitySet="dossiers" />
+      <End Role="record" EntitySet="records" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recordCategory_dossier" Association="Self.FK_recordCategory_dossier">
+      <End Role="dossier" EntitySet="dossiers" />
+      <End Role="recordCategory" EntitySet="recordCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recurrentRecord_dossier" Association="Self.FK_recurrentRecord_dossier">
+      <End Role="dossier" EntitySet="dossiers" />
+      <End Role="recurrentRecord" EntitySet="recurrentRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_record_recordSubcategory" Association="Self.FK_record_recordSubcategory">
+      <End Role="recordSubcategory" EntitySet="recordSubcategories" />
+      <End Role="record" EntitySet="records" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recordSubcategory_recordCategory" Association="Self.FK_recordSubcategory_recordCategory">
+      <End Role="recordCategory" EntitySet="recordCategories" />
+      <End Role="recordSubcategory" EntitySet="recordSubcategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recurrentRecord_recordSubcategory" Association="Self.FK_recurrentRecord_recordSubcategory">
+      <End Role="recordSubcategory" EntitySet="recordSubcategories" />
+      <End Role="recurrentRecord" EntitySet="recurrentRecords" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <FunctionImport Name="CreateCategoriesSubcategoriesFromImport">
+      <Parameter Name="dossierId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CreaterecordsFromImport">
+      <Parameter Name="dossierId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CreateReport_BalanceSheet" ReturnType="Collection(PersonalFinancesDBModel.CreateReport_BalanceSheet_Result)">
+      <Parameter Name="dossierId" Mode="In" Type="Int32" />
+      <Parameter Name="beginDate" Mode="In" Type="String" />
+      <Parameter Name="endDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteDossier">
+      <Parameter Name="dossierId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetrecordSubcategoriesByDossierId" ReturnType="Collection(PersonalFinancesDBModel.GetrecordSubcategoriesByDossierId_Result)">
+      <Parameter Name="dossierId" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="CreateReport_BalanceSheet_Result">
+    <Property Type="Int32" Name="bitmap" Nullable="false" />
+    <Property Type="String" Name="category" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="subcategory" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="total" Nullable="true" Precision="38" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="GetrecordSubcategoriesByDossierId_Result">
+    <Property Type="Int32" Name="recordSubcategoryId" Nullable="false" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="recordCategoryId" Nullable="false" />
+  </ComplexType>
+</Schema>

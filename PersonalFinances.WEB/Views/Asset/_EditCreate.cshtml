@@ -1,0 +1,139 @@
+﻿@model PersonalFinances.BUSINESS.ViewModels.AssetModel
+
+@{
+    string actionName = ViewBag.OperationType;
+
+    string assetLiab= (Model.isAsset) ? "Asset" : "Liability";
+    string idModal = @ViewBag.OperationType + assetLiab + "Modal";
+    string modalTitle = ViewBag.OperationType + assetLiab;
+    string idForm = @ViewBag.OperationType + assetLiab + "Form";
+
+}
+
+<div class="modal fade" id="@idModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="@modalTitle">@actionName @assetLiab</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="editRecord" class="modal-body">
+            
+               @if (Model.subcategories.Count > 0)
+               {
+                    using (Html.BeginForm(actionName: actionName,
+                                                       controllerName: "Asset",
+                                                       method: FormMethod.Post,
+                                                       htmlAttributes: new { id = idForm }))
+                    {
+                        @Html.ValidationSummary(true)
+
+                        @Html.AntiForgeryToken()
+
+                        <fieldset>
+
+                            <input type="hidden" name="dossierId" id="dossierId_@idModal" value="@Model.dossierId" />
+                            <input type="hidden" name="assetId" id="assetId_@idModal" value="@Model.assetId" />
+
+
+                            <div class="row">
+                                <div class="editor-label col-md-offset-3 col-md-3">
+                                    Description
+                                </div>
+                                <div class="editor-field col-md-6">
+                                    @*@Html.EditorFor(model => model.description)*@
+                                    @Html.TextBoxFor(model => model.description, new { @class = "form-control  input-lg", placeholder = "description" })
+                                    @Html.ValidationMessageFor(model => model.description)
+                                </div>
+                            </div>
+
+                            @if (!Model.isAsset)
+                            {
+                                <div id="divPayable" class="row">
+                                    <div class="editor-label col-md-offset-3 col-md-3">
+                                        Payable
+                                    </div>
+                                    <div class="editor-field col-md-6">
+                                        @Html.TextBoxFor(model => model.payable, new { @class = "form-control  input-lg", placeholder = "payable" })
+
+                                        @*@Html.EditorFor(model => model.payable)*@
+                                        @Html.ValidationMessageFor(model => model.payable)
+                                    </div>
+                                </div>
+                                <input type="hidden" name="receivable" value="@Model.receivable" />
+
+                            }
+                            else
+                            {
+                                <div id="divReceivable" class="row">
+                                    <div class="editor-label col-md-offset-3 col-md-3">
+                                        Receivable
+                                    </div>
+                                    <div class="editor-field col-md-6">
+                                        @Html.TextBoxFor(model => model.receivable, new { @class = "form-control  input-lg", placeholder = "receivable" })
+
+
+                                        @*@Html.EditorFor(model => model.receivable)*@
+                                        @Html.ValidationMessageFor(model => model.receivable)
+                                    </div>
+                                </div>
+                                <input type="hidden" name="payable" value="@Model.payable" />
+                            }
+                            <div class="row">
+                                <div class="editor-label col-md-offset-3 col-md-3">
+                                    Category
+                                </div>
+                                <div class="editor-field col-md-6">
+
+
+                                    <select class = "form-control  input-lg" name="assetSubcategoryId" id="assetSubcategoryId">
+                                        @foreach (var subcat in Model.subcategories)
+                                        {
+                                            if (subcat.isAsset == Model.isAsset)
+                                            {
+                                                string selected = (subcat.assetSubcategoryId == Model.assetSubcategoryId) ? " selected " : "";
+                                                <option @selected value="@subcat.assetSubcategoryId">@subcat.categoryDescription - @subcat.description</option>
+                                            }
+
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <input type="submit" class="btn btn-primary" id="SaveUpdate" value="Save Changes" />
+
+                        </fieldset>
+                   }
+
+               }
+               else
+               {
+
+                   <h1>You Need to create Categories and subcategories first</h1>
+
+               }
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

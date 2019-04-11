@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="84db674f8d6248a4a3cca7089002a2fa" Name="Diagram1">
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.AspNetUser" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.asset" Width="1.5" PointX="12" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.assetCategory" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.assetSubcategory" Width="1.5" PointX="9.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.dossier" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.importRecordTmp" Width="1.5" PointX="7.5" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.liability" Width="1.5" PointX="7.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.record" Width="1.5" PointX="12" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.recordCategory" Width="1.5" PointX="7.5" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.recordSubcategory" Width="1.5" PointX="9.75" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.recurrentRecord" Width="1.5" PointX="15" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalFinancesDBModel.assetSubcategoryView" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_dossier_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_asset_assetSubcategory" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_asset_dossier" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_assetCategory_dossier" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_assetSubcategory_assetCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_importRecord_dossier" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_liability_dossier" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_record_dossier" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_recordCategory_dossier" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_recurrentRecord_dossier" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_record_recordSubcategory" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_recordSubcategory_recordCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.FK_recurrentRecord_recordSubcategory" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalFinancesDBModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

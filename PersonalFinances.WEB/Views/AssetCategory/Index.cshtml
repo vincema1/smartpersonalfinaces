@@ -1,0 +1,147 @@
+﻿@model PersonalFinances.BUSINESS.ViewModels.ListAssetsModel
+
+<div class="jumbotron">
+    <h1>ASSET CATEGORIES/SUBCATEGORIES</h1>
+
+    <div class="row">
+        <ul class="nav nav-pills">
+            <li><a href="@Url.Action("Details","Dossier",new { dossierId=Model.DossierId})" class="btn btn-primary btn-lg">Back to Dossier&raquo;</a></li>
+
+            <li>
+                <a href="@Url.Action("Index","Asset",new { dossierId=Model.DossierId})" class="btn btn-primary btn-lg">Back to Assets&raquo;</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Create","AssetCategory",new { dossierId=Model.DossierId})" class="btn btn-primary btn-lg">New Category&raquo;</a>
+                @*<a href="@Url.Action("CreateTest", "AssetCategory")" class="btn btn-primary btn-lg">New Category&raquo;</a>*@
+
+            </li>
+            <li>
+                <a href="@Url.Action("CreateSubcategory", "AssetCategory", new { dossierId=Model.DossierId, isAsset=true})" class="btn btn-primary btn-lg">New Asset Subcategory&raquo;</a>
+            </li>
+            <li>
+                <a href="@Url.Action("CreateSubcategory", "AssetCategory", new { dossierId=Model.DossierId, isAsset=false})" class="btn btn-primary btn-lg">New Liability Subcategory&raquo;</a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#categories"><h2>Asset Categories</h2></a></li>
+    <li><a data-toggle="tab" href="#subcategories"><h2>Asset Subcategories</h2></a></li>
+ 
+</ul>
+
+<div class="tab-content">
+    <div id="categories" class="tab-pane fade in active">
+        @if (Model.Categories.Count > 0)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        Is Asset
+                    </th>
+                    <th>
+                        Description
+                    </th>
+
+                    <th>
+
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Categories)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.isAsset)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", new { dossierId= item.dossierId, description = item.description,assetCategoryId = item.assetCategoryId, isAsset=item.isAsset })">Edit</a>
+                            
+                            @if (item.numSubcategories == 0)
+                            {
+                                <a  class="btn btn-danger btn-sm" href="@Url.Action("DeleteCategory", new {dossierId= item.dossierId, assetCategoryId = item.assetCategoryId })">Delete</a>
+                                /**/
+                            } 
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <h1>No category found</h1>
+        }
+
+    </div>
+   
+    <div id="subcategories" class="tab-pane fade">
+    
+        @if (Model.Subcategories.Count > 0)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        Is Asset
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Subcategories)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.isAsset)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.categoryDescription)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("EditSubcategory", new { dossierId= item.dossierId,
+                                                                                assetSubcategoryId = item.assetSubcategoryId,
+                                                                                description = item.description,
+                                                                                assetCategoryId = item.assetCategoryId,
+                                                                                isAsset =item.isAsset })">Edit</a>
+
+                            @if (item.numAssets == 0)
+                            {
+                                <a class="btn btn-danger btn-sm" href="@Url.Action("DeleteSubcategory", new {dossierId= item.dossierId, assetSubcategoryId = item.assetSubcategoryId })">Delete</a>
+                                /**/
+                            } 
+                         
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+        else
+        {
+            <h1>No Subcategory found</h1>
+        }
+    </div>
+ 
+</div>
+
+      
+       
+          
+
+            

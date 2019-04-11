@@ -1,0 +1,64 @@
+﻿@model PersonalFinances.DATA.DataModel.record
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>expense</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.dossier.dossierName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dossier.dossierName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.recordSubcategory.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.recordSubcategory.description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.expense)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.expense)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.revenue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.revenue)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.comment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.comment)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.recordId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PersonalFinancesDBModelStoreContainer" CdmEntityContainer="PersonalFinancesDBEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="assets">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.asset">
+        <MappingFragment StoreEntitySet="asset">
+          <ScalarProperty Name="assetId" ColumnName="assetId" />
+          <ScalarProperty Name="dossierId" ColumnName="dossierId" />
+          <ScalarProperty Name="receivable" ColumnName="receivable" />
+          <ScalarProperty Name="payable" ColumnName="payable" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="externalId" ColumnName="externalId" />
+          <ScalarProperty Name="assetSubcategoryId" ColumnName="assetSubcategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="assetCategories">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.assetCategory">
+        <MappingFragment StoreEntitySet="assetCategory">
+          <ScalarProperty Name="assetCategoryId" ColumnName="assetCategoryId" />
+          <ScalarProperty Name="dossierId" ColumnName="dossierId" />
+          <ScalarProperty Name="isAsset" ColumnName="isAsset" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="assetSubcategories">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.assetSubcategory">
+        <MappingFragment StoreEntitySet="assetSubcategory">
+          <ScalarProperty Name="assetSubcategoryId" ColumnName="assetSubcategoryId" />
+          <ScalarProperty Name="assetCategoryId" ColumnName="assetCategoryId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dossiers">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.dossier">
+        <MappingFragment StoreEntitySet="dossier">
+          <ScalarProperty Name="dossierId" ColumnName="dossierId" />
+          <ScalarProperty Name="dossierName" ColumnName="dossierName" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="importRecordTmps">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.importRecordTmp">
+        <MappingFragment StoreEntitySet="importRecordTmp">
+          <ScalarProperty Name="importRecordTmpId" ColumnName="importRecordTmpId" />
+          <ScalarProperty Name="dossierId" ColumnName="dossierId" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="revenue" ColumnName="revenue" />
+          <ScalarProperty Name="expense" ColumnName="expense" />
+          <ScalarProperty Name="numOfDuplicates" ColumnName="numOfDuplicates" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="subcategory" ColumnName="subcategory" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="liabilities">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.liability">
+        <MappingFragment StoreEntitySet="liability">
+          <ScalarProperty Name="liabilityId" ColumnName="liabilityId" />
+          <ScalarProperty Name="dossierId" ColumnName="dossierId" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="records">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.record">
+        <MappingFragment StoreEntitySet="record">
+          <ScalarProperty Name="recordId" ColumnName="recordId" />
+          <ScalarProperty Name="dossierId" ColumnName="dossierId" />
+          <ScalarProperty Name="recordSubcategoryId" ColumnName="recordSubcategoryId" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="revenue" ColumnName="revenue" />
+          <ScalarProperty Name="expense" ColumnName="expense" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="recordCategories">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.recordCategory">
+        <MappingFragment StoreEntitySet="recordCategory">
+          <ScalarProperty Name="recordCategoryId" ColumnName="recordCategoryId" />
+          <ScalarProperty Name="dossierId" ColumnName="dossierId" />
+          <ScalarProperty Name="isExpense" ColumnName="isExpense" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="recordSubcategories">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.recordSubcategory">
+        <MappingFragment StoreEntitySet="recordSubcategory">
+          <ScalarProperty Name="recordSubcategoryId" ColumnName="recordSubcategoryId" />
+          <ScalarProperty Name="recordCategoryId" ColumnName="recordCategoryId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="recurrentRecords">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.recurrentRecord">
+        <MappingFragment StoreEntitySet="recurrentRecord">
+          <ScalarProperty Name="recurrentRecordId" ColumnName="recurrentRecordId" />
+          <ScalarProperty Name="dossierId" ColumnName="dossierId" />
+          <ScalarProperty Name="recordSubcategoryId" ColumnName="recordSubcategoryId" />
+          <ScalarProperty Name="beginDate" ColumnName="beginDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="peridiocity" ColumnName="peridiocity" />
+          <ScalarProperty Name="dayPeriod" ColumnName="dayPeriod" />
+          <ScalarProperty Name="value" ColumnName="value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="assetSubcategoryViews">
+      <EntityTypeMapping TypeName="PersonalFinancesDBModel.assetSubcategoryView">
+        <MappingFragment StoreEntitySet="assetSubcategoryView">
+          <ScalarProperty Name="dossierId" ColumnName="dossierId" />
+          <ScalarProperty Name="assetSubcategoryId" ColumnName="assetSubcategoryId" />
+          <ScalarProperty Name="assetCategoryId" ColumnName="assetCategoryId" />
+          <ScalarProperty Name="categoryDescription" ColumnName="categoryDescription" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="isAsset" ColumnName="isAsset" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="PersonalFinancesDBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="CreateCategoriesSubcategoriesFromImport" FunctionName="PersonalFinancesDBModel.Store.CreateCategoriesSubcategoriesFromImport" />
+    <FunctionImportMapping FunctionImportName="CreateRecordsFromImport" FunctionName="PersonalFinancesDBModel.Store.CreateRecordsFromImport" />
+    <FunctionImportMapping FunctionImportName="CreateReport_BalanceSheet" FunctionName="PersonalFinancesDBModel.Store.CreateReport_BalanceSheet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PersonalFinancesDBModel.CreateReport_BalanceSheet_Result">
+          <ScalarProperty Name="bitmap" ColumnName="bitmap" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="subcategory" ColumnName="subcategory" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CreateReport_IncomeStatement" FunctionName="PersonalFinancesDBModel.Store.CreateReport_IncomeStatement">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PersonalFinancesDBModel.CreateReport_IncomeStatement_Result">
+          <ScalarProperty Name="bitmap" ColumnName="bitmap" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="subcategory" ColumnName="subcategory" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DeleteDossier" FunctionName="PersonalFinancesDBModel.Store.DeleteDossier" />
+    <FunctionImportMapping FunctionImportName="DeleteFromRecordTmp" FunctionName="PersonalFinancesDBModel.Store.DeleteFromRecordTmp" />
+    <FunctionImportMapping FunctionImportName="GetrecordSubcategoriesByDossierId" FunctionName="PersonalFinancesDBModel.Store.GetrecordSubcategoriesByDossierId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PersonalFinancesDBModel.GetrecordSubcategoriesByDossierId_Result">
+          <ScalarProperty Name="recordSubcategoryId" ColumnName="recordSubcategoryId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="recordCategoryId" ColumnName="recordCategoryId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ImportRecords_BulkInsert" FunctionName="PersonalFinancesDBModel.Store.ImportRecords_BulkInsert" />
+    <FunctionImportMapping FunctionImportName="sp_deleteEmptyCategories" FunctionName="PersonalFinancesDBModel.Store.sp_deleteEmptyCategories" />
+    <FunctionImportMapping FunctionImportName="sp_deleteRecordSelection" FunctionName="PersonalFinancesDBModel.Store.sp_deleteRecordSelection" />
+    <FunctionImportMapping FunctionImportName="sp_getImportRecordTmp" FunctionName="PersonalFinancesDBModel.Store.sp_getImportRecordTmp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PersonalFinancesDBModel.sp_getImportRecordTmp_Result">
+          <ScalarProperty Name="importRecordTmpId" ColumnName="importRecordTmpId" />
+          <ScalarProperty Name="dossierId" ColumnName="dossierId" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="revenue" ColumnName="revenue" />
+          <ScalarProperty Name="expense" ColumnName="expense" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="subcategory" ColumnName="subcategory" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="duplicates" ColumnName="duplicates" />
+          <ScalarProperty Name="doubles" ColumnName="doubles" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getListDuplicates" FunctionName="PersonalFinancesDBModel.Store.sp_getListDuplicates">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PersonalFinancesDBModel.sp_getListDuplicates_Result">
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="dossierId" ColumnName="dossierId" />
+          <ScalarProperty Name="expense" ColumnName="expense" />
+          <ScalarProperty Name="revenue" ColumnName="revenue" />
+          <ScalarProperty Name="recordSubcategoryId" ColumnName="recordSubcategoryId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="subcategory" ColumnName="subcategory" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_mergeCategories" FunctionName="PersonalFinancesDBModel.Store.sp_mergeCategories" />
+    <FunctionImportMapping FunctionImportName="sp_mergeSubcategories" FunctionName="PersonalFinancesDBModel.Store.sp_mergeSubcategories" />
+    <FunctionImportMapping FunctionImportName="sp_records_fullsearch" FunctionName="PersonalFinancesDBModel.Store.sp_records_fullsearch" />
+    <FunctionImportMapping FunctionImportName="sp_YearlyExpensePerCategory" FunctionName="PersonalFinancesDBModel.Store.sp_YearlyExpensePerCategory" />
+  </EntityContainerMapping>
+</Mapping>
