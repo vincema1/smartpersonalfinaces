@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -203,8 +204,9 @@
     <Compile Include="Controllers\AssetCategoryController.cs" />
     <Compile Include="Controllers\AssetController.cs" />
     <Compile Include="Controllers\DossierController.cs" />
+    <Compile Include="Controllers\ImportRecordService.cs" />
     <Compile Include="Controllers\RecordController.cs" />
-    <Compile Include="Controllers\RecordTmpController.cs" />
+    <Compile Include="Controllers\RecordImportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">

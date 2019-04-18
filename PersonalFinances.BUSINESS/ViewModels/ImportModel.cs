@@ -1,13 +1,9 @@
-﻿using System;
+﻿using PersonalFinances.DATA.DataModel;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using PersonalFinances.DATA.DataModel;
-using PersonalFinances.DATA.Utils;
-using PersonalFinances.BUSINESS.Utils;
 using System.IO;
-using System.Threading.Tasks;
 using System.Runtime.Caching;
+using System.Threading.Tasks;
 
 namespace PersonalFinances.BUSINESS.ViewModels
 {
