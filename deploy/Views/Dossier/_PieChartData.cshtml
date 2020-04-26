@@ -1,0 +1,39 @@
+﻿@model List<PersonalFinances.BUSINESS.ViewModels.IncomeStatementLine>
+
+<div>
+    <h1>Your @ViewBag.Type from @ViewBag.FirstDate to @ViewBag.LastDate</h1>
+    <p>Click a colour in the chart, or an item in the table, to pull out a slice!</p>
+</div>
+<canvas id="chart" width="600" height="500"></canvas>
+
+@{ 
+
+    string[] colors = { "#0DA068", "#194E9C", "#ED9C13", "#ED5713", "#057249", "#5F91DC", "#F88E5D" };
+    int i = 0;
+}
+
+
+
+<table id="chartData">
+    <tr>
+        <th>Widget</th>
+        <th>Sales (€)</th>
+    </tr>
+
+    @foreach (var line in Model)
+    {
+        <tr style="color:@colors[i%colors.Length] ">
+            <td>@line.category</td>
+            <td>@line.total</td>
+        </tr>
+
+        i++;
+
+    }
+
+    @*<tr style="color: #194E9C">
+        <td>MegaWidget</td>
+        <td>1316,00</td>
+    </tr>*@
+    
+</table>

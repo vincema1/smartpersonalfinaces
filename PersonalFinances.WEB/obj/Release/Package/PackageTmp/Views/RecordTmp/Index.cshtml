@@ -1,0 +1,323 @@
+﻿@model  PersonalFinances.BUSINESS.ViewModels.ListRecordsTmpModel
+
+
+<div class="jumbotron">
+    <h1>DOSSIER: @Model.DossierName </h1>
+    <p class="lead">Import and validate your financial records from an external source</p>
+    <p><a href="@Url.Action("Details","Dossier",new { dossierId=Model.DossierId})" class="btn btn-primary btn-lg">Back to dashboard &raquo;</a></p>
+</div>
+
+
+
+<div class="container">
+    <div class="row" id="PollOnImport">
+    
+    </div>
+    <div class="row">
+        <div class="panel panel-default col-lg-6">
+            <form method="post" id="frmAddToDossier" name="frmAddToDossier" action="@Url.Action("ImportAsync")" enctype="multipart/form-data">
+                <div class="col-md-5">
+
+                    <label class="">
+                        @*file name:*@
+                        <input type="file" id="importFile" name="importFile" />
+                    </label>
+                    <input type="hidden" id="dossierId_hidden" name="dossierId" value="@Model.DossierId" />
+                </div>
+                <div class="col-md-2">
+
+                    <input type="radio" name="type" value="bulk" checked>Bulk<br>
+                    <input type="radio" name="type" value="entity">Entity<br>
+                </div>
+
+                @*<div class="col-md-5">
+                    <input type="submit" name="AddToDossier" id="AddToDossier" class="btn btn-primary btn-lg" value="upload&raquo;" />
+                </div>*@
+            </form>
+            <div class="col-md-5">
+                <input type="button" name="AddToDossier" id="AddToDossier" class="btn btn-primary btn-lg" value="upload&raquo;" />
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="col-md-6">
+                <a href="@Url.Action("AddToDossier", new { dossierId= Model.DossierId })" class="btn btn-primary btn-lg">add to dossier</a>
+            </div>
+
+            <div class="col-md-6">
+                <a href="@Url.Action("DeleteRecordsTmp", new { dossierId=Model.DossierId})" class="btn btn-danger btn-lg">delete temporary records</a>
+            </div>
+
+          
+        </div>
+    </div>
+    @if (Model.PagedListRecords.Count>0)
+    { 
+        <div class="row">
+            <div class="panel panel-default">
+
+                @{
+                    var navTab = new PersonalFinances.BUSINESS.ViewModels.NavigationData { DossierId = Model.DossierId, CurrentPage = Model.CurrentPage, TotalNumberOfPages = Model.TotalNumberOfPages, ItemsPerPage = Model.ItemsPerPage };
+                    Html.RenderPartial("_NavigationTab", navTab);
+                }
+            </div>
+
+
+            <table class="listTable">
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Revenue
+                    </th>
+                    <th>
+                        Expense
+                    </th>
+                    <th>
+                        Duplicates
+                    </th>
+                    <th>
+                        Doubles
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Subcategory
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Comment
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.PagedListRecords)
+                {
+
+                    string duplicate = (item.duplicates == 0) ? "false" : "true";
+                    string warning = (item.doubles == 0) ? "false" : "true";
+
+                    <tr id="tr_@item.importRecordTmpId"
+                        subcategory="@item.subcategory"
+                        category="@item.category"
+                        expense="@item.expense"
+                        revenue="@item.revenue"
+                        duplicates="@item.duplicates"
+                        doubles="@item.doubles"
+                        description="@item.description"
+                        comment="@item.comment"
+                        duplicate="@duplicate"
+                        warning="@warning"
+
+                        >
+                        <td>
+                            @item.date.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.revenue)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.expense)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.duplicates)
+                        </td>
+                        <td id="td_doubles_@item.importRecordTmpId">
+                            @Html.DisplayFor(modelItem => item.doubles)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.subcategory)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.comment)
+                        </td>
+                        <td>
+             
+                            <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { dossierId=Model.DossierId ,importRecordTmpId = item.importRecordTmpId })">Delete</a>
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    }
+    else
+    {
+        <h1>No temporary record found</h1>
+    }
+</div>
+
+
+
+<div class="modal fade" id="ListOfDuplicatesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="ListOfDuplicates">List of Duplicates</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="ListDuplicates" class="modal-body">
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ProcessingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="~/Images/processing.gif" />
+                <h1>please, don't leave the page</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Scripts{
+    
+    <script>
+
+
+        //global variables
+        var dossierId_ASP =@Model.DossierId;
+        var urlGetDoubles_ASP = "@Url.Action("GetListDoubles", "RecordTmp")";
+
+        var urlPollOnImport_ASP = "@Url.Action("PollOnImport", "RecordTmp")";
+
+         var urlImport_ASP = "@Url.Action("ImportEntity", "RecordTmp")";
+
+
+        function fillModalWithDoubles(data)
+        {
+            $("#ListDuplicates").html(data);
+            $('#ListOfDuplicatesModal').modal('show');
+        }
+
+        function pollSuccess(data)
+        {
+
+            $("#PollOnImport").html(data);
+            console.log("polling");
+        }
+
+        function ajaxPoll()
+        {
+            $.ajax({
+                url: urlPollOnImport_ASP,
+                type: 'get',
+                data: { dossierId:dossierId_ASP},
+                success: pollSuccess,
+                complete: poll
+                //,timeout: 5000
+            });
+        }
+
+   
+        function poll()
+        {
+            //see: http://reallifejs.com/brainchunks/repeated-events-timeout-or-interval/
+            setTimeout(ajaxPoll, 4000);
+        };
+
+        function addToDossier()
+        {
+            var type = $('input[name=type]:checked', '#frmAddToDossier').val();
+
+            //if (type == "entity")
+            //{
+            //    poll();
+            //    //$("#frmAddToDossier").ajaxSubmit({ url: urlImport_ASP, type: 'post' })
+            //    submitForm();
+            //    //setTimeout(submitForm, 2000);
+
+            //}
+            //else
+            if (type == "entity")
+                $('#ProcessingModal').modal('show');
+
+            $('form#frmAddToDossier').submit();
+        }
+
+        function submitForm()
+        {
+
+         
+            var formData = new FormData();
+            formData.append("dossierId", $('#dossierId_hidden').val());
+            formData.append("type", $('input[name=type]:checked', '#frmAddToDossier').val());
+            var file = document.getElementById("importFile").files[0];
+            formData.append("importFile", file);
+            
+            //for (var [key, value] of formData.entries()) {
+            //    console.log(key, value);
+            //}
+
+
+            $.ajax({
+                url: urlImport_ASP,
+                type: 'post',
+                data: formData,
+                processData: false,
+                contentType:false,
+                success: fillModalWithDoubles
+            }
+            );
+
+        }
+
+
+
+        function getDoublesAjax()
+        {
+            var importRecordTmpId = this.id.split("_")[2];
+
+            //alert(urlGetDoubles_ASP);
+            $.ajax({
+                    url: urlGetDoubles_ASP,
+                    type: 'get',
+                    data:
+                    {
+                        dossierId: dossierId_ASP,
+                        importRecordTmpId: importRecordTmpId
+                    },
+                    success: fillModalWithDoubles
+                    }
+                   );
+        }
+
+        function main()
+        {
+            $(document).on("click", "td[id^='td_doubles_']", getDoublesAjax);
+            $(document).on("click", "#AddToDossier", addToDossier);
+
+        }
+
+        $(document).ready(main);
+
+    </script>
+    }

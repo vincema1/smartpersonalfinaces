@@ -1,0 +1,255 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* balance sheet
+----------------------------------------------------------*/
+.onglet {
+    background-color: #CCC;
+    padding: 2px;
+    margin: 2px;
+    border: 1px solid #000;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    display: block;
+    width: 120px;
+}
+
+.contenu {
+    padding: 5px;
+    margin: 0;
+    border: 1px solid #000;
+    width: 400px;
+    display: block;
+    background-color: #39C;
+    color: #FFF;
+    clear: both;
+}
+
+.contenuV {
+    padding: 5px;
+    margin: -83px 0 0 132px;
+    border: 1px solid #000;
+    width: 400px;
+    float: left;
+    background-color: #39C;
+    color: #FFF;
+    clear: both;
+}
+
+.category {
+    font-size: large;
+    border: 1px solid #000;
+    margin: 2px;
+    font-weight: bold;
+}
+
+
+/*List records*/
+
+.info 
+{
+    /*width: 320px;*/
+    margin: 40px 0 10px 0;
+    padding: 10px 20px;
+    /*font-size: .8em;*/
+    -webkit-box-shadow: 0px 0px 12px orange;
+    -moz-box-shadow: 0px 0px 12px orange;
+    box-shadow: 0px 0px 12px orange;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background: #fbfbfb;
+    color: #555;
+    /*position: fixed;*/
+    /*z-index: 5;*/
+    /*top: 160px;
+    left: 600px;*/
+}
+
+    .info td, th 
+    {
+        margin: 5px 5px 5px 5px;
+        padding: 5px 5px 5px 5px;
+    }
+
+
+
+    .listTable {
+        /*width: 200px;*/
+        /*margin: 0 10px 0 0;*/
+        margin:5px;
+        /*float: right;*/
+        border-collapse: collapse;
+        box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+        /*background-position: 0 -100px;*/
+    }
+
+    .listTable th, .listTable td {
+        padding: 0.5em;
+        border: 1px dotted #666;
+        text-align: left;
+    }
+
+    .listTable th {
+        border-bottom: 2px solid #333;
+        text-transform: uppercase;
+    }
+
+    .listTable td {
+        cursor: pointer;
+    }
+
+    .listTable td.highlight {
+        background: #e8e8e8;
+    }
+
+    .listTable tr:hover td {
+        background: #f0f0f0;
+    }
+
+
+
+
+    /*______________________*/
+
+/*body {
+    background: #fff;
+    color: #333;
+    font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    font-size: 0.9em;
+    padding: 40px;
+}*/
+
+.wideBox {
+    clear: both;
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 10px;
+    background: #ebedf2;
+    border: 1px solid #333;
+    line-height: 80%;
+}
+
+/*#container {
+    width: 900px;
+    margin: 0 auto;
+}*/
+
+#chart, #chartData {
+    border: 1px solid #333;
+    background: #ebedf2 url("images/gradient.png") repeat-x 0 0;
+}
+
+#chart {
+    display: block;
+    margin: 0 0 50px 0;
+    float: left;
+    cursor: pointer;
+}
+
+#chartData {
+    width: 200px;
+    margin: 0 40px 0 0;
+    /*float: right;*/
+    border-collapse: collapse;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+    background-position: 0 -100px;
+}
+
+    #chartData th, #chartData td {
+        padding: 0.5em;
+        border: 1px dotted #666;
+        text-align: left;
+    }
+
+    #chartData th {
+        border-bottom: 2px solid #333;
+        text-transform: uppercase;
+    }
+
+    #chartData td {
+        cursor: pointer;
+    }
+
+        #chartData td.highlight {
+            background: #e8e8e8;
+        }
+
+    #chartData tr:hover td {
+        background: #f0f0f0;
+    }
+
+    /*squared bootstrap buttons*/
+    .btn-sq-lg 
+    {
+        width: 190px !important;
+        height: 100px !important;
+        line-height: 100px;
+        /*display: block;*/
+        text-align: center;
+        
+        font-size: 16px;
+
+
+    }
+
+    .btn-sq {
+        width: 100px !important;
+        height: 100px !important;
+        font-size: 10px;
+    }
+
+    .btn-sq-sm {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 10px;
+    }
+
+    .btn-sq-xs {
+        width: 25px !important;
+        height: 25px !important;
+        padding: 2px;
+    }
+
+
+    tr[duplicate='true'] {
+        background-color: red;
+    }
+
+    tr[warning='true'] {
+        background-color: yellow;
+    }
+
+    /*modal list doubles*/
+
+#ListOfDuplicatesModal .modal-dialog {
+    width: 60%;
+}
+

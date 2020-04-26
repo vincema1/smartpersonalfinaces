@@ -1,0 +1,15 @@
+﻿@model  PersonalFinances.BUSINESS.ViewModels.ImportReport
+
+<div class="jumbotron">
+    <h1>IMPORT RESULTS</h1>
+    <p><a href="@Url.Action("Index", new { dossierId=Model.dossierId})" class="btn btn-primary btn-lg">Back to list &raquo;</a></p>
+</div>
+
+
+<h1>Records processed: @Model.totalRecordsProcessed</h1>
+<h1>Records successfully imported: @Model.SuccessfulImports</h1>
+<h1>Errors: @Model.FailedImports</h1>
+
+
+
+

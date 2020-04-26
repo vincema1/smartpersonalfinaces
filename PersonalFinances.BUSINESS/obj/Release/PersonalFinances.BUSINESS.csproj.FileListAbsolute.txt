@@ -1,0 +1,17 @@
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\PersonalFinancesDB.mdf
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\PersonalFinancesDB_log.ldf
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\PersonalFinances.BUSINESS.dll.config
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\PersonalFinances.BUSINESS.dll
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\PersonalFinances.BUSINESS.pdb
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\EntityFramework.dll
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\EntityFramework.SqlServer.dll
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\PersonalFinances.DATA.dll
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\PersonalFinances.DATA.pdb
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\PersonalFinances.DATA.dll.config
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\EntityFramework.xml
+F:\PF\2019\PersonalFinances.BUSINESS\bin\Release\EntityFramework.SqlServer.xml
+F:\PF\2019\PersonalFinances.BUSINESS\obj\Release\PersonalFinances.BUSINESS.csprojAssemblyReference.cache
+F:\PF\2019\PersonalFinances.BUSINESS\obj\Release\PersonalFinances.BUSINESS.csproj.CoreCompileInputs.cache
+F:\PF\2019\PersonalFinances.BUSINESS\obj\Release\PersonalFinances.BUSINESS.csproj.CopyComplete
+F:\PF\2019\PersonalFinances.BUSINESS\obj\Release\PersonalFinances.BUSINESS.dll
+F:\PF\2019\PersonalFinances.BUSINESS\obj\Release\PersonalFinances.BUSINESS.pdb

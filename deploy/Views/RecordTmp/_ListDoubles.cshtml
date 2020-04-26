@@ -1,0 +1,80 @@
+﻿@model List<PersonalFinances.DATA.POCO.record>
+
+    
+    <table class="listTable">
+        <thead>
+            <tr>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Expense
+                </th>
+                <th>
+                    Revenue
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Comment
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Subcategory
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+        
+            @foreach (var item in Model)
+            {
+               <tr id="tr_@item.recordId"
+                    subcategoryId="@item.recordSubcategoryId"
+                    expense="@item.expense"
+                    revenue="@item.revenue"
+                    category="@item.CategoryDescription"
+                    subcategory="@item.SubcategoryDescription">
+
+                    <td id="Date_@item.recordId">
+                        @item.date.ToString("dd/MM/yyyy")
+                        @*@Html.DisplayFor(modelItem => item.date.ToString("dd/MM/yyyy"))*@
+                    </td>
+                    @{
+                        decimal amount = item.expense ?? 0;
+                        string expense = (amount == 0) ? "" : decimal.Round(amount, 2, MidpointRounding.AwayFromZero).ToString() + " €";
+                        amount = item.revenue ?? 0;
+                        string revenue = (amount == 0) ? "" : decimal.Round(amount, 2, MidpointRounding.AwayFromZero).ToString() + " €";
+
+                    }
+
+                    <td id="Expense_@item.recordId">
+                        @expense
+                    </td>
+                    <td id="Revenue_@item.recordId">
+                        @revenue
+                    <td id="Description_@item.recordId">
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td id="Comment_@item.recordId">
+                        @Html.DisplayFor(modelItem => item.comment)
+                    </td>
+                    <td id="Category_@item.recordId">
+                        @Html.DisplayFor(modelItem => item.CategoryDescription)
+                    </td>
+                    <td id="Subcategory_@item.recordId">
+                        @Html.DisplayFor(modelItem => item.SubcategoryDescription)
+                    </td>
+               </tr>
+            }
+
+        </tbody>
+   </table>   
+    
+
+
+
+

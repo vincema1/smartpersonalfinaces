@@ -1,0 +1,92 @@
+﻿@model PersonalFinances.BUSINESS.ViewModels.AssetModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+
+        <input type="hidden" name="dossierId" id="dossierId" value="@Model.dossierId" />
+        <input type="hidden" name="assetId" id="assetId" value="@Model.assetId" />
+
+
+        <div class="row">
+            <div class="editor-label col-md-offset-3 col-md-3">
+                Description
+            </div>
+            <div class="editor-field col-md-6">
+                @Html.EditorFor(model => model.description)
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+        </div>
+
+        @if (!Model.isAsset)
+        {
+            <div id="divPayable" class="row">
+                <div class="editor-label col-md-offset-3 col-md-3">
+                    Payable
+                </div>
+                <div class="editor-field col-md-6">
+                    @Html.EditorFor(model => model.payable)
+                    @Html.ValidationMessageFor(model => model.payable)
+                </div>
+            </div>
+            <input type="hidden" name="receivable" value="@Model.receivable" />
+
+        }
+        else
+        {
+            <div id="divReceivable" class="row">
+                <div class="editor-label col-md-offset-3 col-md-3">
+                    Receivable
+                </div>
+                <div class="editor-field col-md-6">
+                    @Html.EditorFor(model => model.receivable)
+                    @Html.ValidationMessageFor(model => model.receivable)
+                </div>
+            </div>
+            <input type="hidden" name="payable" value="@Model.payable" />
+        }
+        <div class="row">
+            <div class="editor-label col-md-offset-3 col-md-3">
+                Category
+            </div>
+            <div class="editor-field col-md-6">
+                @*@Html.EditorFor(model => model.category)
+                    @Html.ValidationMessageFor(model => model.category)*@
+
+                <select name="assetSubcategoryId" id="assetSubcategoryId">
+                    @foreach (var subcat in Model.subcategories)
+                    {
+                        if (subcat.isAsset == Model.isAsset)
+                        {
+                            string selected = (subcat.assetSubcategoryId == Model.assetSubcategoryId) ? " selected " : "";
+                            <option @selected value="@subcat.assetSubcategoryId">@subcat.categoryDescription - @subcat.description</option>
+                        }
+
+                    }
+
+                </select>
+            </div>
+        </div>
+
+
+        <input type="submit" class="btn btn-primary" id="SaveUpdate" value="Save Changes" />
+
+    </fieldset>
+}
+

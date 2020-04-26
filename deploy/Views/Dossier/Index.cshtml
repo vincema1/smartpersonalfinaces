@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PersonalFinances.BUSINESS.ViewModels.DossierModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dossierName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dossierName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.dossierId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.dossierId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.dossierId })
+        </td>
+    </tr>
+}
+
+</table>

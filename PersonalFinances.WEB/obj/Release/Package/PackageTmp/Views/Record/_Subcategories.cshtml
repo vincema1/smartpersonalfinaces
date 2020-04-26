@@ -1,0 +1,10 @@
+﻿@model List<PersonalFinances.DATA.POCO.recordSubcategory>
+
+<option value="">*</option>
+@foreach (var subcat in Model)
+{
+    <option description="@subcat.description.Trim()" value="@subcat.recordSubcategoryId"
+            categoryId="@subcat.recordCategoryId">
+        @subcat.description
+    </option>
+}

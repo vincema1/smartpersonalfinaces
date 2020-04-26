@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PersonalFinances.BUSINESS.ViewModels.DossierDetailsModel>
+
+@{
+    Layout = null;
+}
+
+@if (Model.Count() > 0)
+{
+    <h2>Select a Dossiers</h2>
+
+
+    <div class="list-group">
+        
+        @foreach (var item in Model)
+        {
+         
+            <a href = "@Url.Action(actionName: "Details", controllerName: "Dossier", routeValues: new { dossierId = item.Dossier.dossierId }) " class="list-group-item list-group-item-action flex-column align-items-start active">
+                <div class="d-flex w-100 justify-content-between">
+                    <h1 class="mb-1">@item.Dossier.dossierName</h1>
+                    <small>(from @item.FirstDate to @item.LastDate)</small>
+                    <h3>In the last 365 days</h3>
+                    <ul>
+                        @{ 
+                            string expenses = decimal.Round(item.OverallExpensesLast365, 2, MidpointRounding.AwayFromZero).ToString(); //item.OverallExpensesLast365.ToString("#,##");
+                            string revenues = decimal.Round(item.OverallRevenuesLast365, 2, MidpointRounding.AwayFromZero).ToString(); //item.OverallRevenuesLast365.ToString("#,##");
+                            string daily = decimal.Round(item.AverageExpensePerDay, 2, MidpointRounding.AwayFromZero).ToString(); //item.AverageExpensePerDay.ToString("#,##");
+                            string monthly = decimal.Round(item.AverageExpensePerMonth, 2, MidpointRounding.AwayFromZero).ToString();  //item.AverageExpensePerMonth.ToString("#,##");
+                        }
+
+                        <li>Total Expenses: @expenses €</li>
+                        <li>Total Revenues: @revenues €</li>
+                        <li>Daily Average: @daily €</li>
+                        <li>Monthly Average: @monthly €</li>
+                    </ul>
+                </div>
+                @*<p class="mb-1">Donec id elit non mi porta gravida at eget metus.Maecenas sed diam eget risus varius blandit.</p>
+                <small>Donec id elit non mi porta.</small>*@
+            </a>
+        }
+    </div>
+
+}
+else
+{
+    <h2>You do not have a dossier yet. create One!</h2>
+}
+
+
+
+
+

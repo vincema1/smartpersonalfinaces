@@ -1,0 +1,141 @@
+﻿@model PersonalFinances.BUSINESS.ViewModels.RecordModel
+
+@using (Html.BeginForm(actionName: "Edit",
+                       controllerName: "Record",
+                       method: FormMethod.Post,
+                       htmlAttributes:new { id="form_edit"}))
+{
+    @Html.ValidationSummary(true)
+    
+
+    <fieldset>
+      
+        <input type="hidden" name="dossierId" id="form_edit_dossierId" value="@Model.dossierId"/>
+        <input type="hidden" name="recordId" id="form_edit_recordId" value="" />
+        <input type="hidden" name="recordCategoryId" id="form_edit_recordCategoryId" value="" />
+        <input type="hidden" name="recordSubcategoryId" id="form_edit_recordSubcategoryId" value="" />
+
+        <div id="divDate" class="row">
+            <div class="editor-field col-md-offset-3 col-md-6 col-md-offset-3">
+                @*@Html.EditorFor(model => model.date)*@
+                @Html.TextBoxFor(model => model.date, new { @class = "form-control  input-lg", placeholder = "Date" })
+
+                @Html.ValidationMessageFor(model => model.date)
+            </div>
+        </div>
+
+        
+        <div id="divBeginDate" class="row">
+            <div class="editor-field col-md-offset-3 col-md-6 col-md-offset-3">
+                <input type="text" id="beginDate" class = "form-control input-lg " placeholder="Begin Date" />
+            </div>
+           
+            
+        </div>
+
+        <div id="divEndDate"  class="row">
+            <div class="editor-field col-md-offset-3 col-md-6 col-md-offset-3">
+                <input type="text" id="endDate" class = "form-control input-lg " placeholder="End Date" />
+            </div>
+           
+           
+        </div>
+     
+        <div id="divExpense" class="row">
+            <div class="editor-field col-md-offset-3 col-md-6 col-md-offset-3">
+                @Html.TextBoxFor(model => model.expense, new { @class = "form-control  input-lg", placeholder = "Expense" })
+
+
+                @*@Html.EditorFor(model => model.expense)*@
+                @Html.ValidationMessageFor(model => model.expense)
+            </div>
+        </div>
+
+        <div id="divRevenue" class="row">
+            <div class="editor-field col-md-offset-3 col-md-6 col-md-offset-3">
+                @*@Html.EditorFor(model => model.revenue)*@
+                @Html.TextBoxFor(model => model.revenue, new { @class = "form-control  input-lg", placeholder = "Revenue" })
+
+
+                @Html.ValidationMessageFor(model => model.revenue)
+            </div>
+        </div>
+
+        <div  class="row">
+            <div class="editor-field col-md-offset-3 col-md-6 col-md-offset-3">
+                @*@Html.EditorFor(model => model.description)*@
+                @Html.TextBoxFor(model => model.description, new { @class = "form-control  input-lg", placeholder="Description" })
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+        </div>
+
+        <div  class="row">
+            <div class="editor-field col-md-offset-3 col-md-6 col-md-offset-3" >
+                @*@Html.EditorFor(model => model.category)*@
+                @Html.TextBoxFor(model => model.category, new { @class = "form-control  input-lg", placeholder = "Category" })
+
+                @Html.ValidationMessageFor(model => model.category)
+
+                <select id="recordCategoryId"  class = "form-control input-lg ">
+                    <option value="">*</option>
+
+                    @{Html.RenderPartial("_Categories", Model.categories); }
+
+                    @*@foreach (var cat in Model.categories)
+                    {
+
+                        string isExpense = (cat.isExpense) ? "true" : "false";
+                        <option value="@cat.recordCategoryId" 
+                                description="@cat.description.Trim()" 
+                                isExpense="@isExpense">@cat.description</option>
+                    }*@
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="editor-field col-md-offset-3 col-md-6 col-md-offset-3">
+                @*@Html.EditorFor(model => model.subcategory)*@
+                @Html.TextBoxFor(model => model.subcategory, new { @class = "form-control  input-lg", placeholder = "Subcategory" })
+
+
+                @Html.ValidationMessageFor(model => model.subcategory)
+
+                <select id="recordSubcategoryId" class = "form-control input-lg ">
+                    <option value="">*</option>
+
+                    @{Html.RenderPartial("_Subcategories", Model.subcategories); }
+
+                    @*@foreach (var subcat in Model.subcategories)
+                    {
+                        <option description="@subcat.description.Trim()" 
+                                value="@subcat.recordSubcategoryId"
+                                categoryId="@subcat.recordCategoryId">
+                            @subcat.description
+                        </option>
+                    }*@
+                </select>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="editor-field col-md-offset-3 col-md-6 col-md-offset-3">
+                @*@Html.EditorFor(model => model.comment)*@
+                @Html.TextBoxFor(model => model.comment, new { @class = "form-control  input-lg", placeholder = "Comment" })
+
+
+                @Html.ValidationMessageFor(model => model.comment)
+            </div>
+        </div>
+
+        @*<p>
+            <input type="button" id="btnSaveUpdateCreate" actiontype="edit" value="Save" />
+        </p>*@
+    </fieldset>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
