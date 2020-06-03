@@ -1,14 +1,35 @@
-﻿using PersonalFinances.DATA.DataModel;
+﻿using PersonalFinances.BUSINESS.Models;
+using PersonalFinances.BUSINESS.ViewModels;
+using PersonalFinances.DATA.DataModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
 
-namespace PersonalFinances.BUSINESS.ViewModels
+namespace PersonalFinances.BUSINESS.Services
 {
-    public class ImportModel
+    public class ImportRecordService:IImportRecordService
     {
+        public ImportReport ImportRecordsFromFile(int dossierId, string importFilePath, string tmpFilesFolder)
+        {
+
+            _dossierId = dossierId;
+            IImportSource importSource = new ImportFromTxtFile(importFilePath, tmpFilesFolder, dossierId);
+
+            _ImportSource = importSource;
+            _importRecordTmp = _ImportSource.GetRecordTmp();
+            _pathFilesTmp = tmpFilesFolder;
+
+
+            _Report.totalRecordsProcessed = _ImportSource.TotalRecordsProcessed;
+            _Report.FailedImports = _ImportSource.FailedImports;
+            _Report.SuccessfulImports = _ImportSource.TotalRecordsProcessed - _ImportSource.FailedImports;
+            _Report.dossierId = dossierId;
+
+            return _Report;
+        }
+
 
         private PersonalFinancesDBEntities _context = new PersonalFinancesDBEntities();
         private static PersonalFinancesDBEntities _contextST = new PersonalFinancesDBEntities();
@@ -29,7 +50,7 @@ namespace PersonalFinances.BUSINESS.ViewModels
         public ImportReport Report { get { return _Report; } }
 
 
-        public ImportModel(int dossierId, string pathFile, string pathFilesTmp)
+        public ImportRecordService(int dossierId, string pathFile, string pathFilesTmp)
         {
             _dossierId = dossierId;
             IImportSource importSource = new ImportFromTxtFile(pathFile, pathFilesTmp, dossierId);
@@ -45,6 +66,7 @@ namespace PersonalFinances.BUSINESS.ViewModels
             _Report.dossierId = dossierId;
         }
 
+  
         public void ImportBulkInsert()
         {
             _context.ImportRecords_BulkInsert(_dossierId, _ImportSource.ValidatedFilePath);
@@ -154,5 +176,7 @@ namespace PersonalFinances.BUSINESS.ViewModels
 
             return list;
         }
+
+       
     }
 }
