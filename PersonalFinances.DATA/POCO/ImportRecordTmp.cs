@@ -20,5 +20,7 @@ namespace PersonalFinances.DATA.POCO
         public string description { get; set; }
         public string comment { get; set; }
 
+        public bool importError { get; set; }
+
     }
 }

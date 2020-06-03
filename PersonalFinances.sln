@@ -1,13 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinances.WEB", "PersonalFinances.WEB\PersonalFinances.WEB.csproj", "{A4B33D4F-130A-4039-B32E-B6FF6882BE0E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinances.DATA", "PersonalFinances.DATA\PersonalFinances.DATA.csproj", "{E5E307E3-761F-467A-96F8-B6572BC2D1E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinances.BUSINESS", "PersonalFinances.BUSINESS\PersonalFinances.BUSINESS.csproj", "{8CA9DA49-E072-470B-8599-4C288B29247A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A0D67CE9-5686-42C7-A163-35E2B40D5F26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinances.BUSINESS.Tests", "PersonalFinances.BUSINESS.Tests\PersonalFinances.BUSINESS.Tests.csproj", "{D70B27DD-FEEF-4C2E-ADF0-E67E5123F3B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinances.DATA.Tests", "PersonalFinances.DATA.Tests\PersonalFinances.DATA.Tests.csproj", "{C92D7CFC-736C-428E-BE96-A470B5165206}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinances.WEB.Tests", "PersonalFinances.WEB.Tests\PersonalFinances.WEB.Tests.csproj", "{E0A1FA89-AE13-453D-A67E-2FA003544390}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +35,28 @@ Global
 		{8CA9DA49-E072-470B-8599-4C288B29247A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CA9DA49-E072-470B-8599-4C288B29247A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CA9DA49-E072-470B-8599-4C288B29247A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D70B27DD-FEEF-4C2E-ADF0-E67E5123F3B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D70B27DD-FEEF-4C2E-ADF0-E67E5123F3B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D70B27DD-FEEF-4C2E-ADF0-E67E5123F3B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D70B27DD-FEEF-4C2E-ADF0-E67E5123F3B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C92D7CFC-736C-428E-BE96-A470B5165206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C92D7CFC-736C-428E-BE96-A470B5165206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C92D7CFC-736C-428E-BE96-A470B5165206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C92D7CFC-736C-428E-BE96-A470B5165206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0A1FA89-AE13-453D-A67E-2FA003544390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0A1FA89-AE13-453D-A67E-2FA003544390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0A1FA89-AE13-453D-A67E-2FA003544390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0A1FA89-AE13-453D-A67E-2FA003544390}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D70B27DD-FEEF-4C2E-ADF0-E67E5123F3B8} = {A0D67CE9-5686-42C7-A163-35E2B40D5F26}
+		{C92D7CFC-736C-428E-BE96-A470B5165206} = {A0D67CE9-5686-42C7-A163-35E2B40D5F26}
+		{E0A1FA89-AE13-453D-A67E-2FA003544390} = {A0D67CE9-5686-42C7-A163-35E2B40D5F26}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15138F3A-5B21-46D0-B662-6E5A40DE8239}
 	EndGlobalSection
 EndGlobal

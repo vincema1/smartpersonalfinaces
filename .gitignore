@@ -8,6 +8,7 @@ PersonalFinances.DATA/obj/
 PersonalFinances.DATA/bin/
 PersonalFinances.WEB/obj/
 PersonalFinances.WEB/bin/
+PersonalFinances.WEB/App_Data/
 
 # User-specific files
 *.suo

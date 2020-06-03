@@ -78,10 +78,16 @@
   <ItemGroup>
     <Compile Include="Filters\IsValidCurrency.cs" />
     <Compile Include="Filters\IsValidDate.cs" />
+    <Compile Include="Models\ImportResult.cs" />
+    <Compile Include="Models\ExtractionResult.cs" />
+    <Compile Include="Services\Implementations\RecordExtractorFromExcel.cs" />
+    <Compile Include="Services\Implementations\RecordImporter.cs" />
     <Compile Include="Services\ImportRecordExtractorFromExcel.cs" />
     <Compile Include="Models\ImportRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IImportRecordExtractor.cs" />
+    <Compile Include="Services\Interfaces\IRecordImporter.cs" />
+    <Compile Include="Services\Interfaces\IRecordsExtractor.cs" />
     <Compile Include="Services\Report.cs" />
     <Compile Include="Utils\crypto.cs" />
     <Compile Include="Utils\Utils.cs" />
@@ -123,6 +129,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PersonalFinances.DATA\PersonalFinances.DATA.csproj">

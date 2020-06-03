@@ -14,6 +14,7 @@ using System.IO;
 using PersonalFinances.DATA.Utils;
 using System.Threading.Tasks;
 using PersonalFinances.DATA;
+using PersonalFinances.BUSINESS.Services;
 
 namespace PersonalFinances.WEB.Controllers
 {
@@ -21,8 +22,15 @@ namespace PersonalFinances.WEB.Controllers
     public class RecordTmpController : Controller
     {
         private PersonalFinancesDBEntities db = new PersonalFinancesDBEntities();
+        private IImportRecordsExtractor _importRecordExtractor;
 
-      
+
+        public RecordTmpController()
+        {
+            _importRecordExtractor = new ImportRecordsExtractorFromExcel();
+        }
+
+
         [HttpGet]
         public ActionResult GetListDoubles(int dossierId, int importRecordTmpId)
         {
@@ -50,6 +58,7 @@ namespace PersonalFinances.WEB.Controllers
                 var fileName = importFile.FileName;
                 var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), importFile.FileName);
                 importFile.SaveAs(path);
+                               
 
                 ImportModel ImportModel = new ImportModel(dossierId, path, Server.MapPath("~/App_Data/FilesTmp/"));
 
@@ -68,28 +77,6 @@ namespace PersonalFinances.WEB.Controllers
                 return RedirectToAction("index", new { dossierId= dossierId });
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult> ImportEntity(HttpPostedFileBase importFile, int dossierId, string type)
-        //{
-        //    if (importFile != null)
-        //    {
-        //        var fileName = importFile.FileName;
-        //        var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), importFile.FileName);
-        //        importFile.SaveAs(path);
-
-        //        ImportModel ImportModel = new ImportModel(dossierId, path, Server.MapPath("~/App_Data/FilesTmp/"));
-
-        //        //Extracts List Records fromDB
-        //        string sessionID = dossierId + "_" + HttpContext.Session.SessionID;
-
-        //        await ImportModel.ImportEntityAsync(sessionID);
-
-
-        //        return View("Import", ImportModel.Report);
-        //    }
-        //    else
-        //        return RedirectToAction("index", new { dossierId = dossierId });
-        //}
 
         [HttpPost]
         public ActionResult ImportEntity(HttpPostedFileBase importFile, int dossierId, string type)
