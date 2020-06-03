@@ -1,9 +1,0 @@
-﻿@model List<PersonalFinances.DATA.POCO.recordCategory>
-
-<option value="">*</option>
-@foreach (var cat in Model)
-{
-
-    string isExpense = (cat.isExpense) ? "true" : "false";
-    <option value="@cat.recordCategoryId" description="@cat.description.Trim()" isExpense="@isExpense">@cat.description</option>
-}
