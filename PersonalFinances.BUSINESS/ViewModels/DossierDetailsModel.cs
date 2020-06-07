@@ -135,7 +135,7 @@ namespace PersonalFinances.BUSINESS.ViewModels
                 if (!string.IsNullOrEmpty(ConnectionString))
                     SetStringArrayJS(expenses, ConnectionString);
             }
-            catch(Exception e)
+            catch(Exception)
             {
 
             }

@@ -11,6 +11,7 @@ namespace PersonalFinances.BUSINESS.Services.Interfaces
     public interface IRecordsImporter
     {
         ImportResult ImportRecords(int dossierId, IEnumerable<importRecordTmp> Records);
+        int ImportRecordsBulkInsert(int dossierId, string bulkFilePath);
 
     }
 }

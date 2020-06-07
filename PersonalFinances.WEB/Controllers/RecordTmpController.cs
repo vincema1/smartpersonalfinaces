@@ -15,6 +15,8 @@ using PersonalFinances.DATA.Utils;
 using System.Threading.Tasks;
 using PersonalFinances.DATA;
 using PersonalFinances.BUSINESS.Services;
+using PersonalFinances.BUSINESS.Services.Interfaces;
+using PersonalFinances.BUSINESS.Services.Implementations;
 
 namespace PersonalFinances.WEB.Controllers
 {
@@ -22,12 +24,14 @@ namespace PersonalFinances.WEB.Controllers
     public class RecordTmpController : Controller
     {
         private PersonalFinancesDBEntities db = new PersonalFinancesDBEntities();
-        private IImportRecordsExtractor _importRecordExtractor;
+      
+        private IImportProcessor _iImportProcessor;
+
 
 
         public RecordTmpController()
         {
-            _importRecordExtractor = new ImportRecordsExtractorFromExcel();
+            _iImportProcessor = new ExcelImportProcessor();
         }
 
 
@@ -51,27 +55,31 @@ namespace PersonalFinances.WEB.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ImportAsync(HttpPostedFileBase importFile, int dossierId, string type)
+        public ActionResult ImportAsync(HttpPostedFileBase importFile, int dossierId, string type)
         {
             if (importFile != null)
             {
                 var fileName = importFile.FileName;
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), importFile.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data/FilesTmp"), importFile.FileName);
                 importFile.SaveAs(path);
-                               
 
-                ImportModel ImportModel = new ImportModel(dossierId, path, Server.MapPath("~/App_Data/FilesTmp/"));
-
-                //Extracts List Records fromDB
-                string sessionID = dossierId + "_" + HttpContext.Session.SessionID;
-
-                if (type == "bulk")
-                    ImportModel.ImportBulkInsert();
-                else
-                    await ImportModel.ImportEntityAsync(sessionID);
+                var importReport=_iImportProcessor.Process(dossierId, 
+                                                           Server.MapPath("~/App_Data/FilesTmp"), 
+                                                           importFile.FileName);
 
 
-                return View("Import", ImportModel.Report);
+                //ImportModel ImportModel = new ImportModel(dossierId, path, Server.MapPath("~/App_Data/FilesTmp/"));
+
+                ////Extracts List Records fromDB
+                //string sessionID = dossierId + "_" + HttpContext.Session.SessionID;
+
+                //if (type == "bulk")
+                //    ImportModel.ImportBulkInsert();
+                //else
+                //    await ImportModel.ImportEntityAsync(sessionID);
+
+
+                return View("Import", importReport);
             }
             else
                 return RedirectToAction("index", new { dossierId= dossierId });
