@@ -66,6 +66,16 @@
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalFinances.BUSINESS\PersonalFinances.BUSINESS.csproj">
+      <Project>{8ca9da49-e072-470b-8599-4c288b29247a}</Project>
+      <Name>PersonalFinances.BUSINESS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PersonalFinances.DATA\PersonalFinances.DATA.csproj">
+      <Project>{E5E307E3-761F-467A-96F8-B6572BC2D1E6}</Project>
+      <Name>PersonalFinances.DATA</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
