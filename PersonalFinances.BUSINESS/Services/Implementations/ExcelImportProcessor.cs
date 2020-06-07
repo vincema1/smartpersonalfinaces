@@ -23,8 +23,7 @@ namespace PersonalFinances.BUSINESS.Services.Implementations
         }
         public ImportReport Process(int dossierId, string filePath, string fileName)
         {
-            var importReport = new ImportReport();
-
+           
             //extracts list from excel
             var extractionResults= _recordsExctractor.ProcessSource(Path.Combine(filePath, fileName));
             
@@ -35,12 +34,11 @@ namespace PersonalFinances.BUSINESS.Services.Implementations
             //Executes Bulk Insert
             _recordsImporter.ImportRecordsBulkInsert(dossierId, bulkImportFilePath);
 
-            //Fills report data
-            importReport.totalRecordsProcessed = extractionResults.TotalProcessedRecords;
-            importReport.FailedImports = extractionResults.TotalDiscardedRecord;
-            importReport.SuccessfulImports = extractionResults.ValidRecords.Count();
-
-            return importReport;
+            //Fills report data 
+            return new ImportReport { totalRecordsProcessed= extractionResults.TotalProcessedRecords,
+                                        FailedImports= extractionResults.TotalDiscardedRecord,
+                                        SuccessfulImports= extractionResults.ValidRecords.Count(),
+                                        dossierId=dossierId};
         }
     }
 }
