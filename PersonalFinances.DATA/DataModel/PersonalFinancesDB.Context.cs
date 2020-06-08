@@ -21,7 +21,12 @@ namespace PersonalFinances.DATA.DataModel
             : base("name=PersonalFinancesDBEntities")
         {
         }
-    
+
+        public PersonalFinancesDBEntities(string connStr)
+            : base(connStr)
+        {
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

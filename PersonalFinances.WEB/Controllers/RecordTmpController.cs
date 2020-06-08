@@ -1,37 +1,33 @@
-﻿using System;
+﻿using PersonalFinances.BUSINESS.Services.Implementations;
+using PersonalFinances.BUSINESS.Services.Interfaces;
+using PersonalFinances.BUSINESS.ViewModels;
+using PersonalFinances.DATA.DataModel;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using PersonalFinances.DATA.DataModel;
-using POCO=PersonalFinances.DATA.POCO;
-using PersonalFinances.BUSINESS.ViewModels;
-using PersonalFinances.WEB.Utils;
-using static PersonalFinances.Controllers.DossierController;
-using System.IO;
-using PersonalFinances.DATA.Utils;
-using System.Threading.Tasks;
-using PersonalFinances.DATA;
-using PersonalFinances.BUSINESS.Services;
-using PersonalFinances.BUSINESS.Services.Interfaces;
-using PersonalFinances.BUSINESS.Services.Implementations;
+using POCO = PersonalFinances.DATA.POCO;
 
 namespace PersonalFinances.WEB.Controllers
 {
     [Authorize]
     public class RecordTmpController : Controller
     {
-        private PersonalFinancesDBEntities db = new PersonalFinancesDBEntities();
-      
+        //private PersonalFinancesDBEntities db = new PersonalFinancesDBEntities();
+
+        private PersonalFinancesDBEntities _dbContext;
+
         private IImportProcessor _iImportProcessor;
 
 
 
-        public RecordTmpController()
+        public RecordTmpController(PersonalFinancesDBEntities dbContext,
+                                   IImportProcessor importProcessor )
         {
-            _iImportProcessor = new ExcelImportProcessor();
+            _dbContext = dbContext;
+            //  _iImportProcessor = new ExcelImportProcessor();
+
+            _iImportProcessor = importProcessor;
         }
 
 
@@ -155,7 +151,7 @@ namespace PersonalFinances.WEB.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _dbContext.Dispose();
             base.Dispose(disposing);
         }
     }

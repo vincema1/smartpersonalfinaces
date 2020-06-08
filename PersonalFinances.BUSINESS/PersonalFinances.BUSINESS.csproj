@@ -84,12 +84,12 @@
     <Compile Include="Services\Implementations\BulkImportFileCreator.cs" />
     <Compile Include="Services\Implementations\ExcelImportProcessor.cs" />
     <Compile Include="Services\Implementations\RecordExtractorFromExcel.cs" />
-    <Compile Include="Services\Implementations\RecordImporter.cs" />
+    <Compile Include="Services\Implementations\RecordsImporter.cs" />
     <Compile Include="Models\ImportRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Interfaces\IBulkImportFileCreator.cs" />
     <Compile Include="Services\Interfaces\IImportProcessor.cs" />
-    <Compile Include="Services\Interfaces\IRecordImporter.cs" />
+    <Compile Include="Services\Interfaces\IRecordsImporter.cs" />
     <Compile Include="Services\Interfaces\IRecordsExtractor.cs" />
     <Compile Include="Services\Report.cs" />
     <Compile Include="Utils\crypto.cs" />

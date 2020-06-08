@@ -15,11 +15,13 @@ namespace PersonalFinances.BUSINESS.Services.Implementations
         IBulkImportFileCreator _bulkImportFileCreator;
         IRecordsImporter _recordsImporter;
 
-        public ExcelImportProcessor()
+        public ExcelImportProcessor(IRecordsExtractor recordsExtractor,
+                                    IBulkImportFileCreator bulkImportFileCreator,
+                                    IRecordsImporter recordsImporter)
         {
-            _recordsExctractor = new RecordExtractorFromExcel();
-            _bulkImportFileCreator = new BulkImportFileCreator();
-            _recordsImporter = new RecordImporter();
+            _recordsExctractor = recordsExtractor;
+            _bulkImportFileCreator = bulkImportFileCreator;
+            _recordsImporter = recordsImporter;
         }
         public ImportReport Process(int dossierId, string filePath, string fileName)
         {

@@ -8,14 +8,17 @@ using System.Text;
 
 namespace PersonalFinances.BUSINESS.Services.Implementations
 {
-    public class RecordImporter : IRecordsImporter
+    public class RecordsImporter : IRecordsImporter
     {
-    
+
         //TO_DO: inject dependency when set up
-        private PersonalFinancesDBEntities _context = new PersonalFinancesDBEntities();
+        private PersonalFinancesDBEntities _dbContext; 
 
+        public RecordsImporter(PersonalFinancesDBEntities dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
-        
         public ImportResult ImportRecords(int dossierId,IEnumerable<DATA.POCO.importRecordTmp> Records)
         {
             var _importResult = new ImportResult();
@@ -34,7 +37,7 @@ namespace PersonalFinances.BUSINESS.Services.Implementations
 
         public int ImportRecordsBulkInsert(int dossierId, string bulkFilePath)
         {
-            var _ret=_context.ImportRecords_BulkInsert(dossierId, bulkFilePath);
+            var _ret=_dbContext.ImportRecords_BulkInsert(dossierId, bulkFilePath);
             File.Delete(bulkFilePath);
 
             return _ret;
