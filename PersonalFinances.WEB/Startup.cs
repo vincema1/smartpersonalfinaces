@@ -38,8 +38,8 @@ namespace PersonalFinances.WEB
             builder.RegisterType<ExcelImportProcessor>().As<IImportProcessor>();
 
 
-            //https://stackoverflow.com/questions/24391885/how-to-plug-my-autofac-container-into-asp-net-identity-2-1
-
+        //https://stackoverflow.com/questions/24391885/how-to-plug-my-autofac-container-into-asp-net-identity-2-1
+        //https://www.cnblogs.com/shiningrise/p/5573029.html
 
             var x = new ApplicationDbContext();
             builder.Register(c => x);
@@ -51,13 +51,23 @@ namespace PersonalFinances.WEB
             builder.RegisterType<ApplicationUserManager>();
 
 
-            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>();
+         //   builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>();
+
+
+       //     builder.RegisterType<ApplicationDbContext>().AsSelf().InstancePerRequest();
+       //     builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+        //    builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+         //   builder.Register<IDataProtectionProvider>(c => app.GetDataProtectionProvider()).InstancePerRequest();
+
+
 
             //builder.Register(c => new IdentityFactoryOptions<ApplicationSignInManager>() { });
             //builder.RegisterType<ApplicationSignInManager>();
 
 
-            
+
             var container = builder.Build();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

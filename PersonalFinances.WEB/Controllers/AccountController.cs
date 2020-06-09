@@ -24,12 +24,13 @@ namespace PersonalFinances.WEB.Controllers
         private ApplicationUserManager _userManager;
 
         public AccountController(PersonalFinancesDBEntities context,
-                                 ApplicationUserManager userManager)
+                                 ApplicationUserManager userManager,
+                                 ApplicationSignInManager signInManager)
         {
             //https://stackoverflow.com/questions/24391885/how-to-plug-my-autofac-container-into-asp-net-identity-2-1
             _context = context;
             _userManager = userManager;
-           // _signInManager = HttpContext.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+            _signInManager = signInManager;
 
         }
 
@@ -39,17 +40,17 @@ namespace PersonalFinances.WEB.Controllers
         //    SignInManager = signInManager;
         //}
 
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
-        }
+        //public ApplicationSignInManager SignInManager
+        //{
+        //    get
+        //    {
+        //        return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+        //    }
+        //    private set
+        //    {
+        //        _signInManager = value;
+        //    }
+        //}
 
         //public ApplicationUserManager UserManager
         //{
