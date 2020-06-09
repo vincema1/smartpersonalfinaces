@@ -9,6 +9,12 @@ using System.Web.Mvc;
 using System.Reflection;
 using PersonalFinances.BUSINESS.Services.Interfaces;
 using PersonalFinances.BUSINESS.Services.Implementations;
+using System.Web;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using PersonalFinances.WEB.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 [assembly: OwinStartupAttribute(typeof(PersonalFinances.WEB.Startup))]
 namespace PersonalFinances.WEB
@@ -31,14 +37,33 @@ namespace PersonalFinances.WEB
             builder.RegisterType<RecordsImporter>().As<IRecordsImporter>();
             builder.RegisterType<ExcelImportProcessor>().As<IImportProcessor>();
 
-            var container= builder.Build();
+
+            //https://stackoverflow.com/questions/24391885/how-to-plug-my-autofac-container-into-asp-net-identity-2-1
+
+
+            var x = new ApplicationDbContext();
+            builder.Register(c => x);
+            builder.Register(c => new UserStore<ApplicationUser>(x)).AsImplementedInterfaces();
+            builder.Register(c => new IdentityFactoryOptions<ApplicationUserManager>()
+            {
+                DataProtectionProvider = new Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider("PersonalFinances")
+            });
+            builder.RegisterType<ApplicationUserManager>();
+
+
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>();
+
+            //builder.Register(c => new IdentityFactoryOptions<ApplicationSignInManager>() { });
+            //builder.RegisterType<ApplicationSignInManager>();
+
+
+            
+            var container = builder.Build();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
-            
-            //config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-            //config.DependencyResolver = new AutofacDependencyResolver(container);
-
+        //    app.UseAutofacMiddleware(container);
+        
 
         }
     }
